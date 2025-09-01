@@ -133,14 +133,14 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BlackHat MEA CTF 2022 — Forensic challenges">
+<meta property="og:title" content="BlackHat MEA CTF 2022 — Forensic Challenges">
 <meta property="og:url" content="http://example.com/2025/08/21/BlackHat-MEA-CTF-2022-%E2%80%94-Forensic-challenges/index.html">
 <meta property="og:site_name" content="depe">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-08-21T09:26:15.000Z">
-<meta property="article:modified_time" content="2025-08-21T09:29:25.586Z">
+<meta property="article:modified_time" content="2025-09-01T05:43:27.999Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="forensics">
 <meta name="twitter:card" content="summary">
@@ -156,7 +156,7 @@
     
     <title>
         
-            BlackHat MEA CTF 2022 — Forensic challenges | Depe&#39;s Blog
+            BlackHat MEA CTF 2022 — Forensic Challenges | Depe&#39;s Blog
         
     </title>
 
@@ -345,7 +345,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">BlackHat MEA CTF 2022 — Forensic challenges</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">BlackHat MEA CTF 2022 — Forensic Challenges</h1>
 			</div>
 			
 		</div>
@@ -373,8 +373,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-08-21 11:29:25</span>
-            <span class="mobile">2025-08-21 11:29:25</span>
+            <span class="desktop">2025-09-01 07:43:27</span>
+            <span class="mobile">2025-09-01 07:43:27</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -418,8 +418,8 @@
                      data-src="/2025/08/21/BlackHat-MEA-CTF-2022-%E2%80%94-Forensic-challenges/image.png"
                       class="" title="Alt text"
                 >
-<p>The challenge, titled “Mem,” fell under the Forensics section. Participants were given an archive containing a raw memory image, along with the following description of the problem and this is my approach to solving the challenge in BlackHat MEA CTF 2022.</p>
-<p>I found this particular task engaging because of its complexity, and I wanted to share the experience since i was completely noob at the time and just starting my ctf journey </p>
+<p>The challenge, titled “Mem,” was part of the Forensics section. We were given an archive that contained a raw memory image, along with a short description of the task — and here’s basically my approach to solving it during BlackHat MEA CTF 2022.  </p>
+<p>I honestly found this challenge super engaging because of how tricky it was, and I kinda wanted to share my experience since at that time I was still a complete noob just starting my CTF journey.  </p>
 <img  
                      lazyload
                      src="/images/loading.svg"
@@ -427,7 +427,106 @@
                       class="" title="Alt text"
                 >
 
-<p>we had a raw memory image that has been acquired before the pc shutsdown and we have to do a memory forensics analysis of this image  </p>
+<p>So yeah, we had this raw memory image that was captured before the PC shutdown, and the goal was to do some memory forensics analysis on it.  </p>
+<h1 id="Volatility"><a href="#Volatility" class="headerlink" title="Volatility"></a>Volatility</h1><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/08/21/BlackHat-MEA-CTF-2022-%E2%80%94-Forensic-challenges/volitility.png"
+                      class="" title="Alt text"
+                >
+
+<p>Volatility is this really powerful memory forensics framework written in Python under the GNU GPL. Basically, it lets you extract digital artifacts from RAM without touching the original system. It works completely independent of the machine being analyzed but still gives you visibility into its runtime state. It’s designed to help people understand the techniques (and the headaches 😅) that come with analyzing memory images, while also being a solid base for more research in the field.  </p>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>First things first, since I’m currently studying for the eCDFP, I wanted to stick with proper forensics response steps.. meaning I had to do the good old byte-to-byte copy of the image. Of course, I didn’t mess with the original — all my work was on the copy → best practices, right?  </p>
+<p>After that, I jumped straight into the raw image. The first step was to grab some basic info about it:  </p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 /usr/bin/vol.py -f mem.raw imageinfo</span><br></pre></td></tr></table></figure></div>
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/08/21/BlackHat-MEA-CTF-2022-%E2%80%94-Forensic-challenges/mem1.png"
+                      class="" title="Alt text"
+                >
+
+<p>The <code>imageinfo</code> output tells you which profile to use with the <code>--profile=PROFILE</code> flag when running other plugins. Sometimes it’ll suggest more than one profile if they’re closely related. It also prints the address of the KDBG structure (_KDDEBUGGER_DATA64), which is what plugins like <code>pslist</code> and <code>modules</code> rely on to grab the process and module list heads.</p>
+<p>So from here, we know the profile is <code>Win7SP1x64</code>. That means we can start exploring with pslist, psscan, and so on.</p>
+<h3 id="What-is-pslist"><a href="#What-is-pslist" class="headerlink" title="What is pslist?"></a>What is pslist?</h3><p>The <code>pslist</code> plugin lists processes by walking the doubly-linked list pointed to by PsActiveProcessHead. You get details like the offset, process name, PID, parent PID, thread count, handles, start&#x2F;exit times, and since 2.1 even session ID + Wow64 info.</p>
+<h3 id="What-is-psscan"><a href="#What-is-psscan" class="headerlink" title="What is psscan?"></a>What is psscan?</h3><p>The <code>psscan</code> plugin instead uses pool tag scanning to find processes. This way, you can also detect processes that have been terminated or hidden by rootkits. Downside is — if a rootkit overwrites the pool tags, psscan won’t help (though that’s rare in practice).</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 /usr/bin/vol.py -f mem.raw --profile=Win7SP1x64 pslist</span><br></pre></td></tr></table></figure></div>
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/08/21/BlackHat-MEA-CTF-2022-%E2%80%94-Forensic-challenges/mem2.png"
+                      class="" title="Alt text"
+                >
+
+<p>Nothing suspicious jumped out here, so I switched gears and started looking for file objects in memory — thinking maybe the flag was in some file that was opened at the time. For that, I used <code>filescan</code>.</p>
+<h3 id="What-is-filescan"><a href="#What-is-filescan" class="headerlink" title="What is filescan?"></a>What is filescan?</h3><p>The <code>filescan</code> plugin looks for FILE_OBJECTs in physical memory using pool tag scanning. It’ll show files that are still open even if a rootkit is hiding them on disk. The output includes the file offset, filename, number of pointers&#x2F;handles, and effective permissions.</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/08/21/BlackHat-MEA-CTF-2022-%E2%80%94-Forensic-challenges/mem3.png"
+                      class="" title="Alt text"
+                >
+
+<p>Since the output was huge, I just grepped for keywords like <code>ctf</code> and <code>flag</code>:</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python2 /usr/bin/vol.py -f mem.raw --profile=Win7SP1x64 filescan | grep ctf</span><br><span class="line"></span><br><span class="line">python2 /usr/bin/vol.py -f mem.raw --profile=Win7SP1x64 filescan | grep flag</span><br></pre></td></tr></table></figure></div>
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/08/21/BlackHat-MEA-CTF-2022-%E2%80%94-Forensic-challenges/mem4.png"
+                      class="" title="Alt text"
+                >
+
+<p>Boom — there it was: a file called <code>flag.rar</code>. Looked like our target.</p>
+<p>So I dumped it out using:</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 /usr/bin/vol.py -f mem.raw --profile=Win7SP1x64 dumpfiles -Q 0x000000001bbff9c0 -D /your/path/to/save/file</span><br></pre></td></tr></table></figure></div>
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/08/21/BlackHat-MEA-CTF-2022-%E2%80%94-Forensic-challenges/mem5.png"
+                      class="" title="Alt text"
+                >
+
+<p>But when I opened the rar file… yep, password protected 😑 So I had to dig a bit deeper.</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/08/21/BlackHat-MEA-CTF-2022-%E2%80%94-Forensic-challenges/mem6.png"
+                      class="" title="Alt text"
+                >
+
+<p>My first guess (and it turned out to be right) was that the password could be hanging around in environment variables. So I ran <code>envars</code>. This plugin shows all kinds of things: CPU info, architecture, process current directory, temp dir, computer&#x2F;user names, and other juicy artifacts.</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 /usr/bin/vol.py -f mem.raw --profile=Win7SP1x64 envars</span><br></pre></td></tr></table></figure></div>
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/08/21/BlackHat-MEA-CTF-2022-%E2%80%94-Forensic-challenges/mem7.png"
+                      class="" title="Alt text"
+                >
+
+<p>Sure enough, I found a variable called <code>SystemP</code> with a strange value: <code>Ittm1Fc7hcuFrLZIQmxs</code>. Looked totally random, so I figured it was the password — and yep 🤭 nailed it.</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/08/21/BlackHat-MEA-CTF-2022-%E2%80%94-Forensic-challenges/memlast.png"
+                      class="" title="Alt text"
+                >
+
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag = BlackHatMEA&#123;Password_hints_are_the_retrievable&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>So yeah, that was the flag 🎉</p>
+<p>We actually qualified for the BlackHat MEA 2022 Finals, but sadly we couldn’t make it to Riyadh 😓</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2025/08/21/BlackHat-MEA-CTF-2022-%E2%80%94-Forensic-challenges/last.png"
+                      class="" title="Alt text"
+                >
+
 
 		</div>
 
@@ -435,14 +534,14 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> BlackHat MEA CTF 2022 — Forensic challenges</li>
+        <li><strong>Title:</strong> BlackHat MEA CTF 2022 — Forensic Challenges</li>
         <li><strong>Author:</strong> Depe</li>
         <li><strong>Created at
                 :</strong> 2025-08-21 11:26:15</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-08-21 11:29:25
+                    :</strong> 2025-09-01 07:43:27
             </li>
         
         <li>
@@ -545,8 +644,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">BlackHat MEA CTF 2022 — Forensic challenges</div>
-		
+		<div class="page-title">BlackHat MEA CTF 2022 — Forensic Challenges</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Volatility"><span class="nav-text">Volatility</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution"><span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-pslist"><span class="nav-text">What is pslist?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-psscan"><span class="nav-text">What is psscan?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-filescan"><span class="nav-text">What is filescan?</span></a></li></ol></li></ol></li></ol>
 
 	</div>
 </div>
