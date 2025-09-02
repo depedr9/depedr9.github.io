@@ -140,7 +140,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-08-21T09:26:15.000Z">
-<meta property="article:modified_time" content="2025-09-01T05:43:27.999Z">
+<meta property="article:modified_time" content="2025-09-02T01:28:39.254Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="forensics">
 <meta name="twitter:card" content="summary">
@@ -373,8 +373,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-09-01 07:43:27</span>
-            <span class="mobile">2025-09-01 07:43:27</span>
+            <span class="desktop">2025-09-02 03:28:39</span>
+            <span class="mobile">2025-09-02 03:28:39</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -436,8 +436,7 @@
                 >
 
 <p>Volatility is this really powerful memory forensics framework written in Python under the GNU GPL. Basically, it lets you extract digital artifacts from RAM without touching the original system. It works completely independent of the machine being analyzed but still gives you visibility into its runtime state. It’s designed to help people understand the techniques (and the headaches 😅) that come with analyzing memory images, while also being a solid base for more research in the field.  </p>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>First things first, since I’m currently studying for the eCDFP, I wanted to stick with proper forensics response steps.. meaning I had to do the good old byte-to-byte copy of the image. Of course, I didn’t mess with the original — all my work was on the copy → best practices, right?  </p>
-<p>After that, I jumped straight into the raw image. The first step was to grab some basic info about it:  </p>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>I jumped straight into the raw image. The first step was to grab some basic info about it:  </p>
 <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 /usr/bin/vol.py -f mem.raw imageinfo</span><br></pre></td></tr></table></figure></div>
 
 <img  
@@ -541,7 +540,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-09-01 07:43:27
+                    :</strong> 2025-09-02 03:28:39
             </li>
         
         <li>
