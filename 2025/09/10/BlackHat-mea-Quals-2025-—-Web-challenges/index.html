@@ -140,7 +140,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-09-09T23:07:12.000Z">
-<meta property="article:modified_time" content="2025-09-10T00:08:36.129Z">
+<meta property="article:modified_time" content="2025-09-10T00:26:50.533Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
@@ -372,8 +372,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-09-10 02:08:36</span>
-            <span class="mobile">2025-09-10 02:08:36</span>
+            <span class="desktop">2025-09-10 02:26:50</span>
+            <span class="mobile">2025-09-10 02:26:50</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -423,12 +423,6 @@
 </ul>
 <div class="code-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users <span class="keyword">where</span> username<span class="operator">=</span><span class="string">&#x27;$username&#x27;</span> <span class="keyword">and</span> password<span class="operator">=</span><span class="string">&#x27;$password&#x27;</span></span><br></pre></td></tr></table></figure></div>
 
-<p>if somehow we manged bypass the WAF filter we can inject into <code>$username</code>….</p>
-<p>we burned almost 8 straight hours throwing every trick in the SQLi playbook at this waf filter — case toggling, encodings, comment injections, whitespace bypasses — you name it… </p>
-<p>Nothing worked… this WAF laughed at every trick we had up our sleeves… until we realized the real weakness wasnt in what it blocked..but in how it was getting blocked.</p>
-<p>my friend came acrros a writeup for a similar challenge from last year <a class="link"   target="_blank" rel="noopener" href="https://github.com/daffainfo/ctf-writeup/tree/ddb01203ac94c9fe998b91a1ac899a54ad25753b/2024/0xL4ugh%20CTF%202024/Simple%20WAF" >link here<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>.</p>
-<p>Regex engines are:<br>Greedy → they scan large amounts of input inefficiently.<br>Vulnerable to catastrophic backtracking if given overly long payloads.</p>
-<p>So instead of sneaking around the regex, the soultion was to break the regex itself.</p>
 <p>If we somehow managed to bypass the WAF filter, we could inject into the <code>$username</code> field.  </p>
 <p>We spent nearly <strong>eight hours</strong> straight throwing every trick in the SQLi playbook at this filter — case toggling, encodings, comment injections, whitespace bypasses — you name it, we tried it. Nothing worked. This WAF laughed at every payload we had up our sleeves… until we realized the real weakness wasn’t in <em>what</em> it blocked, but in how it was getting blocked.  </p>
 <p>While digging around, my friend came across a <a class="link"   target="_blank" rel="noopener" href="https://github.com/daffainfo/ctf-writeup/tree/ddb01203ac94c9fe998b91a1ac899a54ad25753b/2024/0xL4ugh%20CTF%202024/Simple%20WAF" >similar challenge writeup<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> from last year. That was the lightbulb moment.  </p>
@@ -460,7 +454,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-09-10 02:08:36
+                    :</strong> 2025-09-10 02:26:50
             </li>
         
         <li>
